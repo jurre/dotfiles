@@ -12,16 +12,37 @@
   co = checkout
   pf = push --force-with-lease
   st = status
+  l = "!source ~/.githelpers && pretty_git_log"
+  la = !git l --all
+  r = !git l -25
+  ra = !git r --all
+  dc = diff --cached
+  cp = cherry-pick
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
 [merge]
   ff = only
+	tool = vim
 [commit]
   template = ~/.gitmessage
+  # gpgsign = true
 [fetch]
   prune = true
 [rebase]
   autosquash = true
 [include]
   path = ~/.gitconfig.local
+[user]
+  name = Jurre Stender
+  email = jurrestender@gmail.com
+  # signingkey = 9A84BCDD43F08D2B
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+[gpg]
+  # program = gpg
