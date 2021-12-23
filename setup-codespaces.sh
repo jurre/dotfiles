@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# remove existing files
+rm -f "$HOME/.zshrc"
+rm -f "$HOME/.gitconfig"
+
 PACKAGES_NEEDED="\
   tmux \
   grc \
@@ -15,9 +19,9 @@ PACKAGES_NEEDED="\
   bat \
   libfuse2"
 
-if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
+if ! dpkg -s "${PACKAGES_NEEDED}" > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
-  sudo apt-get -y -q install ${PACKAGES_NEEDED} --fix-missing
+  sudo apt-get -y -q install "${PACKAGES_NEEDED}" --fix-missing
 fi
 
 # install latest neovim
