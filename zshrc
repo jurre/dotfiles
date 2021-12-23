@@ -39,13 +39,12 @@ _load_settings() {
 }
 _load_settings "$HOME/.zsh/configs"
 
-source <(kubectl completion zsh)
-alias kct='kubectl config use-context $(( kubectl config get-contexts -o name; kubectl config current-context ) | fzf -0 -1 --tac)'
-
 function driveby() {
   lsof -i tcp:$1 | awk 'NR!=1 {print $2}' | xargs kill
   printf "Killed everything on port $1\n"
 }
+
+source "${HOME}/.zsh/zsh-history-substring-search.zsh"
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
@@ -96,12 +95,6 @@ alias retag='ctags -R --exclude=.gitignore --exclude=.git --exclude=log --exclud
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
-
-# Include custom aliases
-[[ -f ~/.aliases.local ]] && source ~/.aliases.local
-
-
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
