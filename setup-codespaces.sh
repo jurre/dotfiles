@@ -12,8 +12,8 @@ PACKAGES_NEEDED="\
   silversearcher-ag"
 
 if ! dpkg -s "${PACKAGES_NEEDED}" > /dev/null 2>&1; then
-  sudo apt-get update --fix-missing
-  sudo apt-get -y -q install "${PACKAGES_NEEDED}" --fix-missing
+  sudo apt update --fix-missing
+  sudo apt -y -q install ${PACKAGES_NEEDED} --fix-missing
 fi
 
 # install latest neovim
