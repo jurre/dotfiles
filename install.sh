@@ -1,4 +1,4 @@
-d!/usr/bin/env bash
+#!/usr/bin/env bash
 
 exec > >(tee -i "$HOME/dotfiles_install.log")
 exec 2>&1
