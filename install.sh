@@ -14,16 +14,16 @@ ln -s "$(pwd)/githelpers" "$HOME/.githelpers"
 ln -s "$(pwd)/gitignore" "$HOME/.gitignore"
 ln -s "$(pwd)/gitmessage" "$HOME/.gitmessage"
 
+# zsh
+ln -s "$(pwd)/zsh" "$HOME/.zsh"
+ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
+
 # vim
 ln -s "$(pwd)/vimrc" "$HOME/.vimrc"
 ln -s "$(pwd)/vim" "$HOME/.vim"
 lb
 git submodule update --init
 vim +'PlugInstall' +qa
-
-# zsh
-ln -s "$(pwd)/zsh" "$HOME/.zsh"
-ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
 
 # ag
 ln -s "$(pwd)/agignore" "$HOME/.agignore"
