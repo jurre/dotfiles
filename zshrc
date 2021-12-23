@@ -64,7 +64,8 @@ export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-export FASTLY_API_KEY='RTyCDccLUwlItQKu8CBo15XjZ-xK8w1q'
+
+export EDITOR=/usr/local/bin/nvim
 
 eval "$(nodenv init -)"
 

@@ -8,6 +8,8 @@ if [ -n "$CODESPACES" ]; then
   ./setup-codespaces.sh
 fi
 
+export EDITOR=/usr/local/bin/nvim
+
 # git
 ln -s "$(pwd)/gitconfig" "$HOME/.gitconfig"
 ln -s "$(pwd)/githelpers" "$HOME/.githelpers"
@@ -23,7 +25,7 @@ ln -s "$(pwd)/vimrc" "$HOME/.vimrc"
 ln -s "$(pwd)/vim" "$HOME/.vim"
 lb
 git submodule update --init
-vim +'PlugInstall' +qa
+nvim +'PlugInstall' +qa
 
 # ag
 ln -s "$(pwd)/agignore" "$HOME/.agignore"
