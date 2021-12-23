@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/Users/jurre/dependabot/dependabot-updater'
+let g:netrw_dirhist_9='/Users/jurre/dependabot/dependabot-updater/config'
+let g:netrw_dirhist_8='/Users/jurre/dependabot/dependabot-updater'
+let g:netrw_dirhist_7='/Users/jurre/dependabot/dependabot-updater/script'
+let g:netrw_dirhist_6='/Users/jurre/dependabot/dependabot-updater'
+let g:netrw_dirhist_5='/Users/jurre/dependabot/dependabot-updater/bin'
+let g:netrw_dirhist_4='/Users/jurre/dependabot/dependabot-updater'
+let g:netrw_dirhist_3='/Users/jurre/dependabot'
+let g:netrw_dirhist_2='/Users/jurre/github/dependabot-api/config/kubernetes/default/deployments'
+let g:netrw_dirhist_1='/Users/jurre/github/dependabot-api/spec/processors/shared_examples'

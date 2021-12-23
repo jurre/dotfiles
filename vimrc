@@ -18,9 +18,54 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
+" Bundles
+
+if &compatible
+  set nocompatible
+end
+
+call plug#begin('~/.vim/bundle')
+
+" Define bundles via Github repos
+Plug 'benekastah/neomake'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-rhubarb'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'slim-template/vim-slim'
+Plug 'vim-scripts/ctags.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/tComment'
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'eterps/vim-godebug', { 'for': 'go' }
+Plug 'jimenezrick/vimerl', { 'for': 'erlang' }
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'keith/parsec.vim'
+Plug 'godlygeek/tabular'
+Plug 'janko-m/vim-test'
+Plug 'endel/vim-github-colorscheme'
+Plug 'isRuslan/vim-es6'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
+Plug 'wakatime/vim-wakatime'
+Plug 'elzr/vim-json'
+Plug 'jparise/vim-graphql'
+Plug 'rhysd/vim-crystal'
+Plug 'ncm2/ncm2'
+Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'soft-aesthetic/soft-era-vim'
+Plug 'dense-analysis/ale'
+Plug 'hashivim/vim-terraform'
+Plug 'udalov/kotlin-vim'
+Plug 'github/copilot.vim', { 'branch': 'main' }
+Plug 'Quramy/tsuquyomi'
+
+call plug#end()
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
@@ -150,7 +195,101 @@ set complete+=kspell
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
+" typing is hard
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
+
+:command FQ %s/'\([^']*\)'/"\1"/g
+:command LQ %s/"\([^"]*\)"/'\1'/g
+" keyboard shortcuts
+inoremap jj <ESC>
+inoremap § <Esc>
+
+let g:ruby_path = system('echo $HOME/.rbenv/shims')
+
+" drop a pry
+nnoremap <leader>p orequire"pry";binding.pry<esc>
+
+if (has("termguicolors"))
+  set termguicolors
 endif
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" colorscheme soft-era
+" colorscheme onehalfdark
+" colorscheme github
+
+" highlight the lines we don't want
+let &colorcolumn="81,121"
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+
+" Write undo tree to a file to resume from next time the file is opened
+if has("persistent_undo")
+  set undolevels=2000            " The number of undo items to remember
+  set undofile                   " Save undo history to files locally
+  set undodir=$HOME/.vimundo     " Set the directory of the undofile
+  if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+  endif
+endif
+
+" Remember info about open buffers on close
+set viminfo^=%
+
+set relativenumber
+
+" only case sensitive search when using an uppercase letter
+set ignorecase
+set smartcase
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" RENAME CURRENT FILE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
+endfunction
+map <leader>n :call RenameFile()<cr>
+"
+
+let test#strategy = 'neovim'
+
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+  nmap <Leader>a| :Tabularize /|<CR>
+  vmap <Leader>a| :Tabularize /|<CR>
+endif
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+" Autofix files on save using ALE
+let g:ale_fixers = { '*': ['remove_trailing_lines', 'trim_whitespace'], 'ruby': ['rubocop'] }
+let g:ale_fix_on_save = 1
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+let g:copilot_agent_command = expand('~/Projects/copilot/dist/agent.js')

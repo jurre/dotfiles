@@ -24,10 +24,10 @@
   autocrlf = input
 [merge]
   ff = only
-	tool = vim
+  tool = vim
 [commit]
   template = ~/.gitmessage
-  # gpgsign = true
+  gpgsign = true
 [fetch]
   prune = true
 [rebase]
@@ -36,8 +36,8 @@
   path = ~/.gitconfig.local
 [user]
   name = Jurre Stender
-  email = jurrestender@gmail.com
-  # signingkey = 9A84BCDD43F08D2B
+  email = jurre@github.com
+  signingkey = C4422833EE126749
 [filter "lfs"]
   process = git-lfs filter-process
   required = true
@@ -47,3 +47,7 @@
   insteadOf = https://github.com/
 [gpg]
   # program = gpg
+[http]
+  postBuffer = 524288000
+[pull]
+  ff = only

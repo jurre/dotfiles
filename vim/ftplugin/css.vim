@@ -1,1 +1,1 @@
-setlocal iskeyword+=-
+/Users/jurre/dotfiles/vim/ftplugin/css.vim
