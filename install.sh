@@ -19,6 +19,7 @@ ln -s "$(pwd)/gitmessage" "$HOME/.gitmessage"
 # zsh
 ln -s "$(pwd)/zsh" "$HOME/.zsh"
 ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
+ln -s "$(pwd)/zshenv" "$HOME/.zshenv"
 
 # vim
 ln -s "$(pwd)/vimrc" "$HOME/.vimrc"
