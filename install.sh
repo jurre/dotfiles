@@ -29,3 +29,6 @@ nvim +'PlugInstall' +qa
 
 # ag
 ln -s "$(pwd)/agignore" "$HOME/.agignore"
+
+# use zsh
+sudo chsh -s "$(which zsh)" "$(whoami)"
