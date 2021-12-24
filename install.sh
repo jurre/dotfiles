@@ -27,6 +27,8 @@ ln -s "$(pwd)/vim" "$HOME/.vim"
 mkdir -p "$HOME/.config/nvim/"
 ln -s "$(pwd)/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 git submodule update --init
+curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/68488fd7a388d31704643a3257eb97920bcdd54a/plug.vim
 nvim +'PlugInstall' +qa
 
 # ag
