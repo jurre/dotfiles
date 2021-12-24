@@ -24,6 +24,7 @@ ln -s "$(pwd)/zshenv" "$HOME/.zshenv"
 # vim
 ln -s "$(pwd)/vimrc" "$HOME/.vimrc"
 ln -s "$(pwd)/vim" "$HOME/.vim"
+mkdir -p "$HOME/.config/nvim/"
 ln -s "$(pwd)/nvim/init.vim" "$HOME/.config/nvim/init.vim"
 git submodule update --init
 nvim +'PlugInstall' +qa
