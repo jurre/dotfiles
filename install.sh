@@ -31,5 +31,11 @@ nvim +'PlugInstall' +qa
 # ag
 ln -s "$(pwd)/agignore" "$HOME/.agignore"
 
+if [ -n "$CODESPACES" ]; then
+  git config --global url."https://github.com/".insteadOf git@github.com:
+else
+  git config --global url."git@github.com:".insteadOf https://github.com/
+fi
+
 # use zsh
 sudo chsh -s "$(which zsh)" "$(whoami)"
