@@ -52,7 +52,6 @@ Plug 'endel/vim-github-colorscheme'
 Plug 'isRuslan/vim-es6'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-Plug 'wakatime/vim-wakatime'
 Plug 'elzr/vim-json'
 Plug 'jparise/vim-graphql'
 Plug 'rhysd/vim-crystal'
