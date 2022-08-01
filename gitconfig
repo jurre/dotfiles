@@ -27,7 +27,7 @@
   tool = vim
 [commit]
   template = ~/.gitmessage
-  gpgsign = true
+  # gpgsign = true
 [fetch]
   prune = true
 [rebase]
