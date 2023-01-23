@@ -66,6 +66,7 @@ export LANG=en_US.UTF-8
 
 export EDITOR=/usr/local/bin/nvim
 
+export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 
 # aliases
