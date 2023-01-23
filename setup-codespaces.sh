@@ -31,3 +31,9 @@ wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/ap
 unzip appimage.zip
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
+
+# install nodenv
+git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+~/.nodenv/bin/nodenv init
+mkdir -p "$(nodenv root)"/plugins
+git clone https://github.com/nodenv/node-build.git "$(nodenv root)"/plugins/node-build
