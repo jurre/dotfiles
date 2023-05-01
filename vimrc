@@ -62,7 +62,7 @@ Plug 'soft-aesthetic/soft-era-vim'
 Plug 'dense-analysis/ale'
 Plug 'hashivim/vim-terraform'
 Plug 'udalov/kotlin-vim'
-Plug 'github/copilot.vim', { 'branch': 'main' }
+Plug 'github/copilot.vim', { 'branch': 'release' }
 Plug 'Quramy/tsuquyomi'
 
 call plug#end()
