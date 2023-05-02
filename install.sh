@@ -24,6 +24,23 @@ ln -s $(pwd)/zshrc $HOME/.zshrc
 # ag
 ln -s $(pwd)/agignore $HOME/.agignore
 
+# homebrew
+if [ "$(uname)" = 'Darwin' ]; then
+  if [ -n "$(command -v brew 2> /dev/null)" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/fc8acb0828f89f8aa83162000db1b49de71fa5d8/install.sh)"
+  fi
+elif [ "$CODESPACES" = "true" ]; then
+  if [ -n "$(command -v brew 2> /dev/null)" ]; then
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/fc8acb0828f89f8aa83162000db1b49de71fa5d8/install.sh -o /tmp/install_homebrew.sh
+    /bin/bash < /tmp/install_homebrew.sh
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> "$HOME/.profile"
+  fi
+
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+brew bundle
+
 if [ ! -z "$CODESPACES" ]; then
   ./setup-codespaces.sh
 fi
