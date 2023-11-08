@@ -31,9 +31,13 @@ curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
+# install plugins
+nvim -c 'PlugInstall'
+
 # install nodenv
 git clone https://github.com/nodenv/nodenv.git ~/.nodenv
 ~/.nodenv/bin/nodenv init
 mkdir -p "$(nodenv root)"/plugins
 git clone https://github.com/nodenv/node-build.git "$(nodenv root)"/plugins/node-build
 nodenv install 16.20.0
+nodenv global 16.20.0
